@@ -1,1 +1,0 @@
-// NoteList JS placeholder
