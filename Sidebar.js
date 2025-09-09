@@ -1,1 +1,0 @@
-// Sidebar JS placeholder
