@@ -1,0 +1,1 @@
+// Toolbar JS placeholder
