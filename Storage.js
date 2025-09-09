@@ -1,0 +1,1 @@
+// IndexedDB / Storage JS placeholder
