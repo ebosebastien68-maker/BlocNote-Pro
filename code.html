@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Réinitialisation Mot de Passe - Bloc-Notes Pro</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+    import { getAuth, confirmPasswordReset } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjkh1Kz6nZ1PJPlgt0vn2BKPryBy9IfPg",
+      authDomain: "bloc-notes-professionnel.firebaseapp.com",
+      projectId: "bloc-notes-professionnel",
+      storageBucket: "bloc-notes-professionnel.firebasestorage.app",
+      messagingSenderId: "406106428348",
+      appId: "1:406106428348:web:ca59c22f014ed9dbb7d1b9",
+      measurementId: "G-4JPFRYZ5R4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Récupérer le code oobCode dans l'URL
+    const params = new URLSearchParams(window.location.search);
+    const oobCode = params.get('oobCode');
+
+    window.updatePassword = function() {
+      const newPassword = document.getElementById('new-password').value;
+      confirmPasswordReset(auth, oobCode, newPassword)
+        .then(() => {
+          alert('Mot de passe réinitialisé avec succès !');
+          window.location.href = 'index.html';
+        })
+        .catch(console.error);
+    }
+  </script>
+</head>
+<body>
+  <h1>Réinitialiser votre mot de passe</h1>
+  <input id="new-password" type="password" placeholder="Nouveau mot de passe">
+  <button onclick="updatePassword()">Valider</button>
+</body>
+</html>
